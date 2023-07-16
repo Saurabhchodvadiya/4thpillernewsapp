@@ -1,0 +1,459 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load embed_video_tags %}
+{% block title%} 4thpillar {% endblock %}
+
+{% block body %}
+<br>
+
+
+<div class="container">
+
+    <!--Search Section-->
+    <div class="row ">
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12  ">
+            <form class="d-flex" role="search" action="{% url 'search' %}" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Search" name="search1" id="search1"
+                    aria-label="Search">
+                <button class="btn btn-secondary red text-white rounded-pill" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="col-lg-4 col-md-12 d-flex justify-content-center ">
+            <span><a class="btn btn-light yellow rounded-pill mx-1" style="color:#8e0201"
+                    href="{% url 'status' 'Most Read' %}">Most Read</a></span>
+
+            <span><a class=" btn btn-light yellow rounded-pill mx-1" style="color:#8e0201"
+                    href="{% url 'status' 'New' %}">New</a></span>
+            <span><a class=" btn btn-light yellow rounded-pill mx-1" style="color:#8e0201"
+                    href="{% url 'status' 'Trending' %}">Trending</a></span>
+        </div>
+
+        <div class="col-lg-4 col-md-12  d-flex justify-content-end ">
+
+            <!-- Facebook -->
+            <a class="btn rounded-pill text-white mx-1" title="Facebook" style="background-color: #3b5998;" href="https://www.facebook.com/4thPillarWeThePeople/" role="button"><i
+                    class="fab fa-facebook-f"></i></a>
+
+            <!-- Instagram -->
+            <a class="btn rounded-pill text-white mx-1" title="Instagram" style="background-color: #ac2bac;" href="https://www.instagram.com/4thpillar.wethepeople_/" role="button"><i
+                    class="fab fa-instagram"></i></a>
+
+            <!-- Youtube -->
+            <a class="btn rounded-pill text-white mx-1" title="Youtube" style="background-color: #ed302f;" href="https://www.youtube.com/channel/UC89pEzIKb3m0BiTbfGgAeQA" role="button"><i
+                    class="fab fa-youtube"></i></a>
+
+            <!-- Dailymotion -->
+            <a class="btn rounded-pill text-white mx-1" title="Dailymotion" style="background-color: black;" href="https://www.dailymotion.com/dm_7c63833b4f457b33a0e6050c3567f54d" role="button">
+                <b>d</b></a>
+        </div>
+    </div>
+
+</div>
+
+<br>
+<!-- New-->
+<div class="container">
+
+    <div class="row justify-content-between">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="splimg m-1">
+                    <span></span>
+                    <a href="{% url 'detail' new1.slug %}" class=" stretched-link"></a>
+
+                    {%if new1.Image%}
+                        <img src="{{new1.Image.url}}" alt="{{new1.title}}" style="height:480px;width:100%;object-fit: fill">
+                    {%endif%}
+                    <div class="splcont">   
+                        <h3>{{new1.title}}</h3>
+                        <p class="slc2">{{new1.details|safe}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                {% for n3 in new3 %}
+                <div class="card m-1" style="flex-direction: row;">
+                    {% if n3.Image %}
+                        <img src="{{n3.Image.url}}" class="card-img-top p-1" alt="{{n3.title}}"
+                        style="object-fit: fill;height:156px; width:200px">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title slc1 textred">{{n3.title}}</h5>
+                        <p class="card-text slc2">{{n3.details |truncatechars:70}}</p>
+                        <a href="{% url 'detail' n3.slug %}" class=" stretched-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+        <div class='d-flex justify-content-end'>
+            <a class="btn btn-secondary rounded-pill red text-white m-2"
+                href="https://www.youtube.com/@4thPillarWeThePeople/videos" target="_blank"> See more</a>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+
+<!--Trending -->
+
+<div class="container-fluid py-4" style="background-color:#f2f2f2;">
+    <div class="container" style="background-color:#ffff;  box-shadow: 2px 6px 8px 2px rgba(22, 22, 26, 0.18);">
+        <h2 class="pt-2"> Trending </h2>
+
+        <div id="TrendindgCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+
+                    <div class="row">
+                        {%for nw in trending|slice:":4"%}
+                        <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                            <div class="card h-100">
+                                {%if nw.Image%}
+                                <img src="{{nw.Image.url}}" class="card-img-top" alt="{{nw.title}}"
+                                    style="object-fit: fill;height:180px;">
+                                {%endif%}
+                                <div class="card-body">
+                                    <h5 class="card-title textred slc2">{{nw.title}}</h5>
+                                    <p class="card-text slc3">{{nw.details | safe}}</p>
+
+                                </div>
+                                <a href="{% url 'detail' nw.slug %}" class=" stretched-link"></a>
+                            </div>
+
+                        </div>
+                        {%endfor%}
+                    </div>
+
+
+
+                </div>
+
+                <div class="carousel-item">
+
+                    <div class="row">
+
+                        {%for nw in trending|slice:"4:8"%}
+                        <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                            <div class="card h-100">
+                                {%if nw.Image%}
+                                <img src="{{nw.Image.url}}" class="card-img-top" alt="{{nw.title}}"
+                                    style="object-fit: fill;height:180px;">
+                                {%endif%}
+                                <div class="card-body">
+                                    <h5 class="card-title textred slc2">{{nw.title}}</h5>
+                                    <p class="card-text slc3">{{nw.details}}</p>
+
+                                </div>
+                                <a href="{% url 'detail' nw.slug %}" class=" stretched-link"></a>
+                            </div>
+
+                        </div>
+                        {%endfor%}
+
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#TrendindgCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#TrendindgCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <br>
+    </div>
+</div>
+
+{% comment %} <div class="container-fluid py-4" style="background-color:#f2f2f2;">
+    <div class="container" style="background-color:#ffff;  box-shadow: 2px 6px 8px 2px rgba(22, 22, 26, 0.18);">
+        <h2 class="pt-2"> Trending </h2>
+
+        <div id="TrendindgCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+
+                    <div class="row">
+                        {%for nw in trending|slice:":4"%}
+                        <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                            <div class="card h-100">
+                                {%if nw.Image%}
+                                <img src="{{nw.Image.url}}" class="card-img-top" alt="{{nw.title}}"
+                                    style="object-fit: fill;height:180px;">
+                                {%endif%}
+                                <div class="card-body">
+                                    <h5 class="card-title textred slc2">{{nw.title}}</h5>
+                                    <p class="card-text slc3">{{nw.details}}</p>
+
+                                </div>
+                                <a href="{% url 'detail' nw.slug %}" class=" stretched-link"></a>
+                            </div>
+
+                        </div>
+                        {%endfor%}
+                    </div>
+
+
+
+                </div>
+
+                <div class="carousel-item">
+
+                    <div class="row">
+
+                        {%for nw in trending|slice:"4:8"%}
+                        <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                            <div class="card h-100">
+                                {%if nw.Image%}
+                                <img src="{{nw.Image.url}}" class="card-img-top" alt="{{nw.title}}"
+                                    style="object-fit: fill;height:180px;">
+                                {%endif%}
+                                <div class="card-body">
+                                    <h5 class="card-title textred slc2">{{nw.title}}</h5>
+                                    <p class="card-text slc3">{{nw.details}}</p>
+
+                                </div>
+                                <a href="{% url 'detail' nw.slug %}" class=" stretched-link"></a>
+                            </div>
+
+                        </div>
+                        {%endfor%}
+
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#TrendindgCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#TrendindgCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <br>
+    </div>
+</div> {% endcomment %}
+
+<!--Videos-->
+<div class="container-fluid " style="background-color:#f2f2f2;">
+    <div class="container">
+        <h1>ভিডিও</h1>
+
+        <div class="container " style="background-color:#ffff;box-shadow: 2px 6px 8px 2px rgba(22, 22, 26, 0.18);">
+            <div class=" row ">
+                <div class="col-lg-9 col-md-12 p-2">
+                    <div class="first-row">
+                        {% video vid1.url 'tiny' %}
+                        {% comment %} {{vid1.url |safe}} {% endcomment %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 p-1">
+                    {% for vv in vid3 %}
+                    <div class="card m-1 p-1">
+                        <div class="second-row">
+                            {% video vv.url 'tiny' %}
+                            {% comment %} {{vv.url|safe }} {% endcomment %}
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class='d-flex justify-content-end'>
+            <a class="btn btn-secondary rounded-pill red text-white m-2"
+                href="https://www.youtube.com/@4thPillarWeThePeople/videos" target="_blank"> See more</a>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+{% for mc in main_cat %}
+    {% if mc.category_set.all %}
+        <div class="container" >
+            <hr>
+            <h5 class="text-white red p-1">{{mc.title}} </h5>
+            <div class="row">
+                {% for sub in mc.category_set.all|slice:":4" %}
+
+                <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                    <div class="card h-100">
+                        {% if sub.Image %}
+                            <img src="{{sub.Image.url}}" class="card-img-top" alt="{{sub.title}}"
+                            style="object-fit: fill;height:180px;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title textred">{{sub.title}}</h5>
+
+                        </div>
+                        <a href="{% url 'category' sub.title %}" class=" stretched-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class='d-flex justify-content-end'>
+                <a class="btn btn-secondary rounded-pill red text-white m-2" href="{% url 'main_category' mc.title %}"
+                    target="_blank"> See more</a>
+                </a>
+            </div>
+            
+        </div>
+    {% endif %}
+{% endfor %}
+<hr>
+
+<!-- golden bg start -->
+<!-- {% for mc in main_cat %}
+    {% if mc.category_set.all %}
+    <div id="goldenbg" style="background-image: url(../../media/media/category/mukti-chinta-back1.jpg);">
+        <div class="container">
+            <hr>
+            <h5 class="text-white red p-1">{{mc.title}} </h5>
+            <div class="row">
+                {% for sub in mc.category_set.all|slice:":4" %}
+
+                <div class="cols-1 cols-md-3 col-lg-3 my-3">
+                    <div class="card h-100">
+                        {% if sub.Image %}
+                            <img src="{{sub.Image.url}}" class="card-img-top" alt="{{sub.title}}"
+                            style="object-fit: fill;height:180px;">
+                        {% endif %}
+                        <div class="card-body" style="background-color: white;">
+                            <h5 class="card-title textred" >{{sub.title}}</h5>
+
+                        </div>
+                        <a href="{% url 'category' sub.title %}" class=" stretched-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class='d-flex justify-content-end'>
+                <a class="btn btn-secondary rounded-pill red text-white m-2" href="{% url 'main_category' mc.title %}"
+                    target="_blank"> See more</a>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+<hr> -->
+
+<!-- golden bg ends -->
+
+
+
+<!--Testimonials-->
+<div class="container p-4" style="background-color:#ffff;  box-shadow: 2px 6px 8px 2px rgba(22, 22, 26, 0.18);">
+
+    <section>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-10 col-xl-8 text-center">
+            <h3 class="mb-4">Testimonials</h3>
+            <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                আমরা এখানে আপনাদের কথা বলার জন্য প্রচেষ্টা করি। তার মধ্যে কিছু আপনাদের ভালো লাগে, কিছু হয়তো নাও লাগতে পারে। আমরা দুটোকেই সমানভাবে সন্মান করি।  তাই আপনাদেরই কিছু মন্তব্য আমাদের উদ্দেশ্য , আমরা এখানে প্রত্যয়িত করলাম।.
+            </p>
+          </div>
+        </div>
+      
+        <div class="row text-center d-flex align-items-stretch">
+          <div class="col-md-3 mb-5 mb-md-0 d-flex align-items-stretch">
+            <div class="card testimonial-card ">
+              <div class="card-up m-3" style="background-color: #9d789b;"></div>
+              <div class="avatar mx-auto bg-white rounded-circle">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg"
+                  class="rounded-circle img-fluid m-1" />
+              </div>
+              <div class="card-body">
+                <h4 class="mb-4">Max Kenny</h4>
+                <hr />
+                <p class="dark-grey-text mt-4">
+                  <i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet eos adipisci,
+                  consectetur adipisicing elit.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-5 mb-md-0 d-flex align-items-stretch">
+            <div class="card testimonial-card">
+              <div class="card-up m-3" style="background-color: #7a81a8;"></div>
+              <div class="avatar mx-auto bg-white rounded-circle">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-person_23-2149436182.jpg"
+                  class="rounded-circle img-fluid m-1" />
+              </div>
+              <div class="card-body">
+                <h4 class="mb-4">Lisa Cudrow</h4>
+                <hr />
+                <p class="dark-grey-text mt-4">
+                  <i class="fas fa-quote-left pe-2"></i>Neque cupiditate assumenda in maiores
+                  repudi mollitia architecto.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-5 mb-md-0 d-flex align-items-stretch">
+            <div class="card testimonial-card">
+              <div class="card-up m-3" style="background-color: #7a81a8;"></div>
+              <div class="avatar mx-auto bg-white rounded-circle">
+                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436180.jpg"
+                  class="rounded-circle img-fluid m-1" />
+              </div>
+              <div class="card-body">
+                <h4 class="mb-4">Maria Smantha</h4>
+                <hr />
+                <p class="dark-grey-text mt-4">
+                  <i class="fas fa-quote-left pe-2"></i>Neque cupiditate assumenda in maiores
+                  repudi mollitia architecto.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-5 mb-md-0 d-flex align-items-stretch">
+            <div class="card testimonial-card">
+              <div class="card-up m-3" style="background-color: #7a81a8;"></div>
+              <div class="avatar mx-auto bg-white rounded-circle">
+                <img src="https://img.freepik.com/free-vector/head-man_1308-33466.jpg?"
+                  class="rounded-circle img-fluid m-1" />
+              </div>
+              <div class="card-body">
+                <h4 class="mb-4">John Smith</h4>
+                <hr />
+                <p class="dark-grey-text mt-4">
+                  <i class="fas fa-quote-left pe-2"></i>Neque cupiditate assumenda in maiores
+                  repudi mollitia architecto.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+</div>
+
+
+
+{% endblock %}

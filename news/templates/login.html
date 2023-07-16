@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Login</title>
+
+    <style>
+        {% comment %} {% include 'style.css' %} {% endcomment %}
+        body,
+        html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-x: hidden;
+        background-color:#fff2cc; !important:
+        }
+
+        .logbox{
+
+            background-color:#ecb000;
+            width: 450px;
+            height: 250px;
+            margin-top: auto;
+            margin-bottom: auto;
+            border-radius:20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        .but{
+            background-color:#8e0201;
+            margin:auto;
+            display:block;
+
+        }
+
+    </style>
+
+
+
+  </head>
+  <body>
+  {% load static %}
+  {% comment %} <br><br><br> {% endcomment %}
+
+<div class='h-25'> </div>
+<div class="d-flex justify-content-center">
+    <h1  style='font-family:Montserrat'><b>4thPillar</b></h1>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+    <h6>Login to your account</h6>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+
+<div class="logbox ">
+<div class="d-flex justify-content-center ">
+  <form method="POST" action="">{% csrf_token %}
+    <br>
+    <div class="form-group form-inline">
+        <div class="col-sm-3 ">
+        <label for="username">Email: </label>
+        </div>
+        <input type="text" class="form-control" id="username" name='username'aria-describedby="emailHelp" placeholder="Enter email">
+      
+    </div>
+    <div class="form-group form-inline">
+        <div class="col-sm-3 ">
+        <label for="password">Password: </label>
+        </div>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      
+    </div>
+    <button type="submit" class="btn but text-white " >Submit</button>
+  </form>
+
+</div>
+</div>
+</div>
+
+<br>
+<div class="d-flex justify-content-center form_container" style="color:red;">
+    {% for message in messages %}
+            <p id="messages">{{message}}</p>
+    {% endfor %}</p>
+</div> 
+<br>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

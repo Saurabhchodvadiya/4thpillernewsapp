@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} {{news.title}} {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row justify-content-between">
+
+
+        <div class="col-lg-9 col-md-12 px-5">
+
+            <br>
+            <h1>{{news.title}}</h1>
+            <h5 class="textgray">{{news.author}}|<span style="font-size:14px">{{news.date |date}}</span></h5>
+            {% if news.Image %}
+            <img src="{{news.Image.url}}" class=" border m-2" alt="{{news.title}}" style="object-fit: fill; width:100%">
+            {% endif%}
+            <p class="">{{news.details |safe  }}</p>
+
+            <br>
+            {% if news.image_2 %}
+                <img src="{{news.image_2.url}}" class=" border m-2" alt="{{news.title}}" style="object-fit: fill; width:100%">
+
+                <p class="">{{news.img2_details |safe }}</p>
+                <br>
+            {% endif%}
+
+            {% if news.Image_3 %}
+                <img src="{{news.Image_3.url}}" class=" border m-2" alt="{{news.title}}" style="object-fit: fill; width:100%">
+
+                <p class="">{{news.img3_details |safe }}</p>
+                <br>
+            {% endif%}
+
+
+        </div>
+
+        <div class="col-lg-3 col-md-12 mt-1 ">
+            <h5 class="w-75 red text-white m-1 p-2 text-center "><b>New </b></h5>
+
+
+            {%for n3 in new_news%}
+                <div class="card m-2 " >
+                    <img src="{{n3.Image.url}}" class="card-img-top p-1" alt="{{n3.title}}" style="object-fit: fill;height:180px;">
+                    <div class="card-body">
+                    <h6 class="card-text slc2 textred">{{n3.title}}</h6>
+
+                    <a href="{% url 'detail' n3.slug %}" class=" stretched-link"></a>
+                    </div>
+                </div>
+            {%endfor%}
+
+
+        </div>
+
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <h5 class="text-white red p-1"> Other Writings by -{{news.author}} </h5>
+    <div class="row">
+        {%for ath in author_news%}
+
+        <div class="col-lg-3">
+            <div class="card" >
+                <img src="{{ath.Image.url}}" class="card-img-top" alt="{{ath.title}}" style="object-fit: fill;height:180px;">
+                <div class="card-body">
+                    <h5 class="card-title textred">{{ath.title}}</h5>
+                    <p class="card-text slc2">{{ath.details}}</p>
+
+                </div>
+                
+                <a href="{% url 'detail' ath.slug %}" class=" stretched-link"></a>
+            </div>
+       </div>
+       {%endfor%}
+
+    </div>
+
+
+
+</div>
+{% endblock %}

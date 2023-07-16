@@ -1,0 +1,48 @@
+{% extends 'for_admin/admin_base.html' %}
+{% load static %}
+{% block title%} Add News {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+    <div class="card shadow mb-4 w-75">
+        <div class="card-header py-4"> 
+    
+            <h5 class='d-inline font-weight-bold textred'>Add News:</h5>
+
+        </div>
+        <div class="card-body">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p|safe }}
+                <br>
+                <div class="modal-footer justify-content-center">
+                <input
+                class=" text-white btn btn-light red"
+                type="submit"
+                value="ADD"
+                name="addNews"
+                style="font-weight: bold;"
+                />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script>
+
+
+    {% if saveform %}
+        alert('News added successfully !');
+    
+        window.location.href = "{% url 'admin_news' %}";
+    {% endif %}
+
+
+</script>
+
+{% endblock%}

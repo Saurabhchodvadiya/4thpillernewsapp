@@ -1,0 +1,165 @@
+{% extends 'for_admin/admin_base.html' %}
+{% load static %}
+{% block title%} Dashboard {% endblock %}
+
+{% block body %}
+
+
+
+<div class="container-fluid">
+    
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- News -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary  shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                News</div>
+                            <div class=" d-flex justify-content-between align-items-center pr-4">
+                                <span class="h5 mb-0 font-weight-bold ">Today : {{news_today}} </span>
+                                <span class="h5 mb-0 font-weight-bold">Total : {{total_news}} </span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="far fa-newspaper fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Main Categories -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Main Categories</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{main_cat}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-sitemap fa-2x "></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Sub Categories -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Sub Categories</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{sub_cat}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-sitemap fa-2x textgray"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Total Youtube Videos -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Youtube Links</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ylinks}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-video fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Donations -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Donations
+                            </div>
+
+                            <div class=" d-flex justify-content-between align-items-center pr-4">
+                                <span class="h6 mb-0 font-weight-bold ">Once : {{once}} </span>
+                                <span class="h6 mb-0 font-weight-bold">Monthly :{{monthly}}</span>
+                                <span class="h6 mb-0 font-weight-bold">Yearly : {{yearly}} </span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">₹ {{Earning_monthly}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Earnings -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Earnings (Annual)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">₹ {{Earning_yearly}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    
+    
+</div>
+
+{%endblock%}
