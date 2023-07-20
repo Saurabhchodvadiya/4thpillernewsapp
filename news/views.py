@@ -234,9 +234,9 @@ def delNews(request,slug):
 
 def delMainCat(request,title):
 
-    edcat=Main_category.objects.get(title=title)
-    edcat.delete_status='deleted'
-    edcat.save()
+    edcat=Main_category.objects.filter(title=title).delete()
+    # edcat.delete_status='deleted'
+    # edcat.save()
 
     return redirect('admin_category')
 
@@ -245,9 +245,9 @@ def delMainCat(request,title):
 
 def delCat(request,title):
 
-    edcat=Category.objects.get(title=title)
-    edcat.delete_status='deleted'
-    edcat.save()
+    edcat=Category.objects.filter(title=title).delete()
+    # edcat.delete_status='deleted'
+    # edcat.save()
 
     return redirect('admin_category')
 
